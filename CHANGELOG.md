@@ -26,6 +26,8 @@ metadata and the backend fallback mirror it.
 
 ### Fixed
 
+- Voice previews and cloning pass reference audio correctly to the selected speech recognizer, retain speech across silent windows, and safely unload bundled Whisper (#3183) — thanks @nirmalchatur!
+
 - Bug reports no longer risk freezing the app while looking for your tools: the Node-version folder scan now runs off the main thread (#3180)
 - Bug reports no longer freeze the app when the tool search or a drive stalls, and free disk is only borrowed from a parent folder when the install folder doesn't exist yet (#3179)
 - Model licence dialog is wider and scrolls as one area with the buttons pinned, and follows macOS, Windows and Linux dialog conventions (#3160)
@@ -91,6 +93,7 @@ metadata and the backend fallback mirror it.
 
 ### Fixed
 
+- Voice cloning references longer than 20 seconds are transcribed with the speech-to-text model you selected in Model Catalogue instead of dead-ending on a model the catalogue couldn't install, and that transcription model can now be unloaded on its own from the loaded-models panel without dropping the voice model (#3176)
 - Bug reports no longer risk freezing the app while looking for your tools: the Node-version folder scan now runs off the main thread (#3180)
 - Bug reports no longer freeze the app when the tool search or a drive stalls, and free disk is only borrowed from a parent folder when the install folder doesn't exist yet (#3179)
 - Model licence dialog is wider and scrolls as one area with the buttons pinned, and follows macOS, Windows and Linux dialog conventions (#3160)

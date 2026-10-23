@@ -329,6 +329,8 @@ const _IMPORT_FAILURE_MARKERS = [
   'importerror',
   'dll load failed',
   'undefined symbol',
+  'could not find module',
+  'filenotfounderror',
 ];
 const _CORE_DEPENDENCIES = [
   'torch',

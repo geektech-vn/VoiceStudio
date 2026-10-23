@@ -280,6 +280,25 @@ def test_cache_is_complete_flags_truncated_weight_repo(tmp_path, monkeypatch):
     assert models.cache_is_complete({"repo_id": "k2-fsa/OmniVoice"}) is True
 
 
+def test_cosyvoice3_partial_download_is_not_installed(tmp_path, monkeypatch):
+    """#3112: an interrupted CosyVoice 3 download kept some 5 MB+ weights, which the
+    any-large-file check took for a complete install. Its declared files decide now."""
+    monkeypatch.setenv("HF_HUB_CACHE", str(tmp_path))
+    model = next(m for m in models.KNOWN_MODELS if m["repo_id"] == "FunAudioLLM/Fun-CosyVoice3-0.5B-2512")
+    big = b"\0" * (6 * 1024 * 1024)
+    rev = tmp_path / "models--FunAudioLLM--Fun-CosyVoice3-0.5B-2512" / "snapshots" / "abc123"
+    rev.mkdir(parents=True)
+    for name in ("cosyvoice3.yaml", "campplus.onnx", "llm.pt"):  # flow.pt, hift.pt, ... never landed
+        (rev / name).write_bytes(big)
+    assert models.cache_is_complete(model) is False
+
+    for name in model["required_files"]:
+        path = rev / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(big)
+    assert models.cache_is_complete(model) is True
+
+
 def test_cache_is_complete_exempts_config_only_repo(tmp_path, monkeypatch):
     monkeypatch.setenv("HF_HUB_CACHE", str(tmp_path))
     # pyannote pipeline ships no weight of its own — a tiny cache is legit, not

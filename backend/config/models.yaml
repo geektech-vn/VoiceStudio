@@ -325,6 +325,16 @@ models:
     engines: [cosyvoice]
     size_gb: 9.8
     curated_on: [cuda]
+    # The files the cosyvoice engine loads (its sidecar weights_allow_patterns). Without them an
+    # interrupted download that kept any one large file read as installed (#3112).
+    required_files:
+      - "cosyvoice3.yaml"
+      - "campplus.onnx"
+      - "speech_tokenizer_v3.onnx"
+      - "llm.pt"
+      - "flow.pt"
+      - "hift.pt"
+      - "CosyVoice-BlankEN/model.safetensors"
 
   - repo_id: "lj1995/GPT-SoVITS"
     label: "GPT-SoVITS pretrained weights"

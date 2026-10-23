@@ -26,6 +26,7 @@ metadata and the backend fallback mirror it.
 
 ### Fixed
 
+- Cmd/Ctrl+Z in a Dub page field such as the glossary, translation notes or a segment's Start/End now undoes your typing there instead of the last transcript edit, and Cmd/Ctrl+S on a timeline segment no longer snaps it to the nearest onset (#3199)
 - Bug reports no longer risk freezing the app while looking for your tools: the Node-version folder scan now runs off the main thread (#3180)
 - Bug reports no longer freeze the app when the tool search or a drive stalls, and free disk is only borrowed from a parent folder when the install folder doesn't exist yet (#3179)
 - Model licence dialog is wider and scrolls as one area with the buttons pinned, and follows macOS, Windows and Linux dialog conventions (#3160)

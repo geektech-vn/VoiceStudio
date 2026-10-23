@@ -91,6 +91,7 @@ metadata and the backend fallback mirror it.
 
 ### Fixed
 
+- A backend that stops answering health checks during a long job (for example a model download) is reported as busy and recovers on its own instead of being declared failed with "temporarily not responding" (#3184, #2430)
 - Bug reports no longer risk freezing the app while looking for your tools: the Node-version folder scan now runs off the main thread (#3180)
 - Bug reports no longer freeze the app when the tool search or a drive stalls, and free disk is only borrowed from a parent folder when the install folder doesn't exist yet (#3179)
 - Model licence dialog is wider and scrolls as one area with the buttons pinned, and follows macOS, Windows and Linux dialog conventions (#3160)

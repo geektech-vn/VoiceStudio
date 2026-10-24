@@ -25,6 +25,41 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  # A pull request whose every changed file is on this allowlist cannot affect the
+  # Electron jobs: they run against fake JavaScript backends, not the Python one.
+  # Those jobs (UI crawler, Desktop UI, native package, and the Electron steps of
+  # the test job) are skipped for such PRs; they take ~45 runner-minutes. Anything
+  # else, every push to main and every manual run still runs the full matrix, and
+  # if detection fails for any reason everything runs (`!= 'false'` below).
+  # Other workflow files are on the allowlist (they cannot change what these jobs
+  # do); ci.yml and electron-*.yml are not.
+  changes:
+    name: Changed paths
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      electron: ${{ steps.detect.outputs.electron }}
+    steps:
+      - id: detect
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          electron=true
+          if [ "$EVENT" = pull_request ]; then
+            if files=$(gh api "repos/$REPO/pulls/$PR/files" --paginate --jq '.[].filename') && [ -n "$files" ]; then
+              outside=$(printf '%s\n' "$files" | grep -v -P '^(backend/|omnivoice/|docs/|mobile/|\.github/ISSUE_TEMPLATE/|\.github/scripts/|\.github/[^/]+\.md$|tests/.*\.py$|scripts/[^/]+\.py$|[^/]+\.md$|Makefile$|pyproject\.toml$|uv\.lock$|\.github/workflows/(?!(ci|electron-[a-z-]+)\.yml$)[^/]+\.yml$)' || true)
+              if [ -z "$outside" ]; then electron=false; else printf 'Electron jobs run because of:\n%s\n' "$(printf '%s\n' "$outside" | head -5)"; fi
+            fi
+          fi
+          echo "electron=$electron" >> "$GITHUB_OUTPUT"
+          echo "electron jobs: $electron"
+
   installer:
     name: Electron installer contracts
     runs-on: ubuntu-24.04
@@ -54,6 +89,9 @@ jobs:
 
   test:
     name: Tests (backend + frontend)
+    needs: changes
+    # Must report even if `changes` failed, so a detection error never skips the gate.
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-22.04
     env:
       # Same restricted-network resilience the smoke matrix already sets. This
@@ -159,22 +197,27 @@ jobs:
       # node:test suites for shared renderer modules (tests/frontend/*.test.mjs).
       # Node 22 strips TypeScript types natively; imports need explicit `.ts`.
       - name: Frontend unit tests
+        if: ${{ needs.changes.outputs.electron != 'false' }}
         run: bun run test:frontend
 
       # Electron used to be built only after a release started, so renderer,
       # preload and packaging regressions could pass the required PR gate.
       # Keep this command shared with electron-release.yml through the root script.
       - name: Electron typecheck, tests and production contract
+        if: ${{ needs.changes.outputs.electron != 'false' }}
         run: bun run check:electron
 
       - name: Snap artifact repair regression
+        if: ${{ needs.changes.outputs.electron != 'false' }}
         run: node --test electron/tests/snap-artifact-verification.test.mjs electron/tests/snap-launcher.test.mjs electron/tests/snap-store-packaging.test.mjs
 
       # Browser workflow smokes exercise the maintained Electron renderer after
       # the production build/typecheck/test contract above succeeds.
       - name: Install Playwright chromium
+        if: ${{ needs.changes.outputs.electron != 'false' }}
         run: bunx playwright install --with-deps chromium
       - name: Electron renderer workflow smokes
+        if: ${{ needs.changes.outputs.electron != 'false' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -209,6 +252,8 @@ jobs:
   # twelve jobs per push queued behind the runner limit for hours.
   ui-crawler:
     name: UI crawler
+    needs: changes
+    if: ${{ !cancelled() && needs.changes.outputs.electron != 'false' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -260,6 +305,8 @@ jobs:
 
   linux-native-package:
     name: Linux native package
+    needs: changes
+    if: ${{ !cancelled() && needs.changes.outputs.electron != 'false' }}
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
@@ -289,6 +336,8 @@ jobs:
   # installers are covered separately by packaged-smoke.mjs on release paths.
   electron-ui:
     name: Desktop UI (${{ matrix.label }})
+    needs: changes
+    if: ${{ !cancelled() && needs.changes.outputs.electron != 'false' }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     strategy:

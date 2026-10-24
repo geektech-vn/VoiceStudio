@@ -340,6 +340,8 @@ metadata and the backend fallback mirror it.
 
 - Gallery preview fallback smoke no longer flakes when a slower runner reads the playing clip in several byte ranges (#3018)
 
+- `pytest tests/` runs on a Windows checkout again: a mobile-contract probe that could not launch an npm-installed bun no longer aborts collection of the whole suite (#3155)
+
 ## [0.5.7] — 2026-10-17
 
 **VoiceStudio now runs on PCs without a GPU and recovers instead of giving up.** Voice cloning uses the speech-to-text model you installed from Model Catalogue, GPU-less computers get the small CPU PyTorch build, and slow or busy backends are no longer reported as failed.

@@ -277,11 +277,11 @@ before the token works for downloads.
 
 **Fix:**
 
-1. Open **Settings → API Keys** in the app and paste a working HF token (or set
+1. Open **Settings → Credentials** in the app and paste a working HF token (or set
    `HF_TOKEN` in your env). See [docs/setup/huggingface-token.md](../setup/huggingface-token.md).
 2. Visit https://huggingface.co/pyannote/speaker-diarization-3.1 while signed
    in with the same HF account → click **"Agree and access repository"**.
-3. Retry the job. The token state in **Settings → API Keys** should now show
+3. Retry the job. The token state in **Settings → Credentials** should now show
    the "App" row with a green check next to your username.
 
 If the token and license are already valid but an older build still reports
@@ -306,7 +306,7 @@ itself does not grant access.
 1. Visit https://huggingface.co/kyutai/pocket-tts while signed in, review the
    license and prohibited-use conditions, share the requested contact details,
    and accept the conditions.
-2. Open **Settings → API Keys** and save a read token from that same account.
+2. Open **Settings → Credentials** and save a read token from that same account.
 3. Open **Model Catalogue**, review and accept the PocketTTS terms locally,
    then retry. VoiceStudio stores this acknowledgement only on your machine.
 

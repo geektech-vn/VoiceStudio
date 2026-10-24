@@ -172,7 +172,7 @@ configuration.
 
 ## HF_TOKEN persistence
 
-The **recommended path** is the in-app **Settings → API Keys** panel: it
+The **recommended path** is the in-app **Settings → Credentials** panel: it
 writes the token to VoiceStudio's encrypted SQLite store *and* to the canonical
 `huggingface_hub` location, so every subprocess the app spawns picks it up.
 

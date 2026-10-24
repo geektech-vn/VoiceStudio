@@ -109,6 +109,7 @@ metadata and the backend fallback mirror it.
 
 ### CI
 
+- Pull requests that only change Python, docs, mobile or non-Electron workflows skip the Electron-only CI jobs (UI crawler, Desktop UI, native package), cutting their CI time from ~26 to ~8 minutes (#3271)
 - CI cancels a pull request's older run when it is pushed again, older Docker builds on main are cancelled, and review-bot comments no longer take a runner, so mass pushes stop flooding the queue (#3260)
 - Release notes open with the installer signing table, so you see which downloads are signed before the changelog (#3255)
 - macOS release builds retry once when Apple's ticket server drops the notarization staple, instead of failing the whole release (#3244)

@@ -381,6 +381,12 @@ hard rules from the first prompt.
 
 ## Quality gates your PR must pass
 
+- **CI scope:** the Electron-only jobs (UI crawler, Desktop UI, Linux native
+  package, and the Electron steps of `Tests (backend + frontend)`) are skipped on a
+  pull request whose every changed file is Python/backend, docs, mobile, a
+  non-Electron workflow, or a lockfile; the job list in the PR shows them as
+  skipped. Any other path, and every push to `main`, runs the full matrix. The
+  allowlist is in the `changes` job of `.github/workflows/ci.yml`.
 - **Cross-platform parity (hard rule):** anything that ships in default mode
   must behave identically on macOS, Windows, and Linux. Platform-specific
   *implementation* is fine; platform-divergent *default behavior* is a P0.

@@ -2906,6 +2906,7 @@
     "host_memory_exhausted": "Komputer kehabisan memori. Tutup aplikasi dan tab peramban lain yang boros memori, bongkar model yang tidak dipakai, buat bagian yang lebih pendek, atau pilih mesin TTS yang lebih ringan.",
     "engine_dependency_missing": "Paket Python yang dibutuhkan mesin ini belum terpasang, sehingga mesin tidak bisa dimulai. Buka Katalog Model, pilih mesin lalu gunakan Pasang / Perbaiki, kemudian mulai ulang VoiceStudio.",
     "reference_stt_missing": "Suara ini tidak punya transkrip dan tidak ada model ucapan-ke-teks yang terpasang untuk membuatnya. Ketik isi klip referensi di kotak transkrip (klip hingga 20 detik), atau pasang model ucapan-ke-teks di Katalog Model, pilih, lalu buat lagi.",
+    "install_speech_model": "Instal model ucapan-ke-teks",
     "proxy_gateway_error": "Proxy atau gateway di antara Anda dan VoiceStudio menjawab HTTP {{status}} menggantikan backend. Backend mungkin masih bekerja. Naikkan batas waktu baca proxy (di nginx, proxy_read_timeout) untuk pembuatan yang panjang, lalu periksa Pengaturan → Log → Backend.",
     "route_not_found": "Backend VoiceStudio yang berjalan tidak memiliki endpoint {{route}}. Mulai ulang VoiceStudio agar aplikasi dan backend cocok; jika masih terjadi, perbarui keduanya ke versi yang sama."
   },

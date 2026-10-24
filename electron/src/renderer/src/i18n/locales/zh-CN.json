@@ -2906,6 +2906,7 @@
     "host_memory_exhausted": "电脑内存不足。请关闭其他占用内存的应用和浏览器标签页，卸载不用的模型，生成较短的片段，或选择更轻量的 TTS 引擎。",
     "engine_dependency_missing": "此引擎所需的 Python 包未安装，因此引擎无法启动。请打开模型目录，选择该引擎并使用 安装 / 修复，然后重启 VoiceStudio。",
     "reference_stt_missing": "此声音没有文字稿，也没有安装可用于生成文字稿的语音转文字模型。请在文字稿框中输入参考音频所说的内容（音频不超过 20 秒），或在模型目录中安装并选择一个语音转文字模型，然后重新生成。",
+    "install_speech_model": "安装语音识别模型",
     "proxy_gateway_error": "你与 VoiceStudio 之间的代理或网关返回了 HTTP {{status}}，而不是后端的响应。后端可能仍在处理。对于较长的生成，请调大代理的读取超时（nginx 为 proxy_read_timeout），然后查看 设置 → 日志 → 后端。",
     "route_not_found": "正在运行的 VoiceStudio 后端没有 {{route}} 接口。请重启 VoiceStudio 使应用与后端一致；若仍然如此，请将两者更新到同一版本。"
   },

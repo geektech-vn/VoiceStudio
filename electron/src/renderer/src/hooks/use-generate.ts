@@ -93,6 +93,8 @@ export interface UseGenerateClone {
   /** 0..100 reported while model weights or runtime are loading. */
   modelProgress: number | null;
   error: string | null;
+  /** Stable backend failure topic of `error` (e.g. `REFERENCE_STT_MISSING`), when it sent one. */
+  errorTopic: string | null;
   clearError(): void;
   canGenerate: boolean;
   canGenerateDesign: boolean;
@@ -106,6 +108,16 @@ export interface UseGenerateClone {
   cloneBlocker: CloneBlocker;
   /** How the active engine reads `instruct`: OmniVoice tags or as written (#2389). */
   instructVocabulary: InstructVocabulary;
+}
+
+function failureTopic(err: unknown): string | null {
+  if (!(err instanceof ApiError) || !err.payload) return null;
+  const detail = err.payload.detail;
+  const topic =
+    typeof detail === 'object' && detail !== null
+      ? (detail as { docs_topic?: unknown }).docs_topic
+      : undefined;
+  return typeof topic === 'string' && topic ? topic : null;
 }
 
 function isModelNotDownloaded(err: unknown): boolean {
@@ -169,6 +181,7 @@ function useGenerateController(): UseGenerateClone {
     [cannotClone, designBlocker, ttsBlocker],
   );
   const [error, setError] = useState<string | null>(null);
+  const [errorTopic, setErrorTopic] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [progress, setProgress] = useState<number | null>(null);
@@ -298,6 +311,7 @@ function useGenerateController(): UseGenerateClone {
       activeRef.current = true;
       cancelledRef.current = false;
       setError(null);
+      setErrorTopic(null);
       setIsGenerating(true);
       setElapsedSeconds(0);
       setProgress(null);
@@ -365,6 +379,7 @@ function useGenerateController(): UseGenerateClone {
       } catch (err) {
         if (!cancelledRef.current) {
           recordActionBreadcrumb(`generate:${reportMode}:error`);
+          setErrorTopic(failureTopic(err));
           setError(
             isAbortError(err)
               ? tr('tts_errors.timeout')
@@ -414,7 +429,11 @@ function useGenerateController(): UseGenerateClone {
     modelStage,
     modelProgress,
     error,
-    clearError: () => setError(null),
+    errorTopic,
+    clearError: () => {
+      setError(null);
+      setErrorTopic(null);
+    },
     canGenerate: blocker === null && !isGenerating,
     canGenerateDesign: designBlocker === null && !isGenerating,
     designBlocker,

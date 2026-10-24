@@ -560,6 +560,7 @@
     "host_memory_exhausted": "The computer ran out of memory. Close other memory-heavy apps and browser tabs, flush models you are not using, render a shorter passage, or select a lighter TTS engine.",
     "engine_dependency_missing": "A Python package this engine needs is not installed, so the engine could not start. Open Model Catalogue, select the engine and use Install / Repair, then restart VoiceStudio.",
     "reference_stt_missing": "This voice has no transcript and no speech-to-text model is installed to write one. Type what the reference clip says into the transcript box (clips up to 20 seconds), or install a speech-to-text model in Model Catalogue, select it, then generate again.",
+    "install_speech_model": "Install speech-to-text model",
     "proxy_gateway_error": "A proxy or gateway between you and VoiceStudio answered HTTP {{status}} instead of the backend. The backend may still be working. Raise the proxy's read timeout (for nginx, proxy_read_timeout) for long generations, then check Settings → Logs → Backend.",
     "route_not_found": "The running VoiceStudio backend has no {{route}} endpoint. Restart VoiceStudio so the app and backend match; if it persists, update both to the same version."
   },

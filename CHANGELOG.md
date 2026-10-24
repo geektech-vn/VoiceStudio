@@ -37,6 +37,7 @@ metadata and the backend fallback mirror it.
 
 ### Fixed
 
+- A voice with no transcript now offers a one-click speech-to-text model install instead of only an error (#3269)
 - Saved voice and recent take rows show their hover actions on a solid background, so the buttons stay visible over long names (#3263)
 - Saved dub loads confirm before replacing unsaved work, recheck edits made during loading and stop when you leave the workspace (#3234)
 - Large VirusTotal uploads upgrade the documented legacy upload URL to HTTPS before sending files or credentials (#3238)
@@ -108,6 +109,7 @@ metadata and the backend fallback mirror it.
 
 ### CI
 
+- Pull requests that only change Python, docs, mobile or non-Electron workflows skip the Electron-only CI jobs (UI crawler, Desktop UI, native package), cutting their CI time from ~26 to ~8 minutes (#3271)
 - CI cancels a pull request's older run when it is pushed again, older Docker builds on main are cancelled, and review-bot comments no longer take a runner, so mass pushes stop flooding the queue (#3260)
 - Release notes open with the installer signing table, so you see which downloads are signed before the changelog (#3255)
 - macOS release builds retry once when Apple's ticket server drops the notarization staple, instead of failing the whole release (#3244)

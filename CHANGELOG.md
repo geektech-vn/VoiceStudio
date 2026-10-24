@@ -260,6 +260,7 @@ metadata and the backend fallback mirror it.
 **Highlights**
 
 - Preview iOS and Android companion apps for your own VoiceStudio
+- MLX-Audio preserves supported voice settings and reports model failures instead of silently retrying with a default voice (#2739) — thanks @BichengWang!
 - Opt-in Beta update channel: get fixes early from Settings → Updates, and roll onto the next stable release automatically
 
 ### Changed

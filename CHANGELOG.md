@@ -275,6 +275,7 @@ metadata and the backend fallback mirror it.
 - Smart Fit speed limits: set the fastest and slowest speed dubbing may apply to a line, from the Timing section (#3026) — thanks @MoonDragon-MD!
 
 ### Fixed
+- Markdown bold and italic markers are stripped before synthesis instead of being read aloud as "asterisk" (#3197) — thanks @swadhinbiswas!
 
 - App icon, tray icons and in-app logo no longer show a black band behind the waveform (#3221)
 - Speed/quality changes finish as soon as they are saved, even while the clone controls are still loading (#3031)

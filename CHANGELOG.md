@@ -70,6 +70,7 @@ metadata and the backend fallback mirror it.
 - Bug reports now include your OS, memory, free disk and whether the Python runtime exists, even when the backend never started, plus flags for risky install paths such as OneDrive or non-ASCII folders (#3156)
 - Bug reports no longer hang on a stalled drive, and report free disk and the uv tool correctly on first run and in source checkouts (#3170)
 - Older synthesized takes play again with accurate play/pause controls after a newer generation (#3102)
+- Windows startup failure from a missing Visual C++ runtime now names the missing DLL and points to the redistributable instead of reinstalling PyTorch, and the error message quotes the backend's own failure reason instead of a `503` health line (#3058)
 - Generation-complete notifications appear above the workspace instead of covering synthesis controls (#3102)
 - Generated speech no longer starts and ends with silence, and `[pause]` markers give exactly the pause you asked for (Raw preset and explicit durations untouched) (#3080)
 - Engine sidecars no longer load PyTorch just to answer the Test Engine ping, and a failed test logs its reason locally (#3026) — thanks @tekay-de!

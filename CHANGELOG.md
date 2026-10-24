@@ -36,6 +36,7 @@ metadata and the backend fallback mirror it.
 
 ### Fixed
 
+- MOSS-TTS-Nano reuses the configured tokenizer cache instead of nesting another cache inside its model code and exceeding Windows path limits (#3137) — thanks @ZFzuofeng!
 - Saved dub loads confirm before replacing unsaved work, recheck edits made during loading and stop when you leave the workspace (#3234)
 - Large VirusTotal uploads upgrade the documented legacy upload URL to HTTPS before sending files or credentials (#3238)
 

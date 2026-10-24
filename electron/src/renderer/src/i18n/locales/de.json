@@ -2906,6 +2906,7 @@
     "host_memory_exhausted": "Dem Computer ist der Arbeitsspeicher ausgegangen. Schließe andere speicherintensive Apps und Browser-Tabs, entlade nicht benötigte Modelle, erzeuge einen kürzeren Abschnitt oder wähle eine leichtere TTS-Engine.",
     "engine_dependency_missing": "Ein Python-Paket, das diese Engine benötigt, ist nicht installiert, daher konnte sie nicht starten. Öffne den Modellkatalog, wähle die Engine und nutze Installieren/Reparieren, und starte VoiceStudio dann neu.",
     "reference_stt_missing": "Diese Stimme hat kein Transkript, und es ist kein Spracherkennungsmodell installiert, um eines zu erstellen. Gib ein, was der Referenzclip sagt (Clips bis 20 Sekunden), oder installiere im Modellkatalog ein Spracherkennungsmodell, wähle es aus und erzeuge erneut.",
+    "install_speech_model": "Spracherkennungsmodell installieren",
     "proxy_gateway_error": "Ein Proxy oder Gateway zwischen dir und VoiceStudio hat statt des Backends HTTP {{status}} geantwortet. Das Backend arbeitet möglicherweise noch. Erhöhe für lange Erzeugungen das Lese-Timeout des Proxys (bei nginx proxy_read_timeout) und prüfe dann Einstellungen → Protokolle → Backend.",
     "route_not_found": "Das laufende VoiceStudio-Backend kennt den Endpunkt {{route}} nicht. Starte VoiceStudio neu, damit App und Backend zusammenpassen; bleibt das Problem, aktualisiere beide auf dieselbe Version."
   },

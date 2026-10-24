@@ -2910,6 +2910,7 @@
     "host_memory_exhausted": "Komputerowi zabrakło pamięci. Zamknij inne aplikacje i karty przeglądarki zajmujące dużo pamięci, wyładuj nieużywane modele, wygeneruj krótszy fragment lub wybierz lżejszy silnik TTS.",
     "engine_dependency_missing": "Pakiet Pythona potrzebny temu silnikowi nie jest zainstalowany, więc silnik nie mógł się uruchomić. Otwórz Katalog modeli, wybierz silnik i użyj Zainstaluj / Napraw, a potem uruchom VoiceStudio ponownie.",
     "reference_stt_missing": "Ten głos nie ma transkrypcji, a nie jest zainstalowany żaden model rozpoznawania mowy, który mógłby ją utworzyć. Wpisz w polu transkrypcji, co mówi klip referencyjny (klipy do 20 sekund), albo zainstaluj model rozpoznawania mowy w Katalogu modeli, wybierz go i wygeneruj ponownie.",
+    "install_speech_model": "Zainstaluj model rozpoznawania mowy",
     "proxy_gateway_error": "Serwer proxy lub brama między Tobą a VoiceStudio odpowiedziały HTTP {{status}} zamiast backendu. Backend może nadal pracować. Zwiększ limit czasu odczytu proxy (w nginx proxy_read_timeout) dla długich generacji, a potem sprawdź Ustawienia → Dzienniki → Backend.",
     "route_not_found": "Uruchomiony backend VoiceStudio nie ma punktu końcowego {{route}}. Uruchom VoiceStudio ponownie, aby aplikacja i backend do siebie pasowały; jeśli problem się utrzymuje, zaktualizuj oba do tej samej wersji."
   },

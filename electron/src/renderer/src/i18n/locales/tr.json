@@ -2906,6 +2906,7 @@
     "host_memory_exhausted": "Bilgisayarın belleği tükendi. Belleği çok kullanan diğer uygulamaları ve tarayıcı sekmelerini kapatın, kullanmadığınız modelleri boşaltın, daha kısa bir bölüm üretin veya daha hafif bir TTS motoru seçin.",
     "engine_dependency_missing": "Bu motorun ihtiyaç duyduğu bir Python paketi yüklü değil, bu yüzden motor başlatılamadı. Model Kataloğu'nu açın, motoru seçin ve Yükle / Onar'ı kullanın, ardından VoiceStudio'yu yeniden başlatın.",
     "reference_stt_missing": "Bu sesin deşifresi yok ve bir tane oluşturacak konuşmadan metne modeli yüklü değil. Referans klibin söylediğini deşifre kutusuna yazın (en fazla 20 saniyelik klipler) veya Model Kataloğu'ndan bir konuşmadan metne modeli yükleyip seçin ve yeniden üretin.",
+    "install_speech_model": "Konuşma tanıma modelini yükle",
     "proxy_gateway_error": "Sizinle VoiceStudio arasındaki bir proxy veya ağ geçidi, arka uç yerine HTTP {{status}} yanıtı verdi. Arka uç hâlâ çalışıyor olabilir. Uzun üretimler için proxy'nin okuma zaman aşımını artırın (nginx'te proxy_read_timeout), ardından Ayarlar → Günlükler → Arka uç bölümüne bakın.",
     "route_not_found": "Çalışan VoiceStudio arka ucunda {{route}} uç noktası yok. Uygulama ile arka ucun eşleşmesi için VoiceStudio'yu yeniden başlatın; sorun sürerse ikisini de aynı sürüme güncelleyin."
   },
